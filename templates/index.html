@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<div class="jumbotron text-center shadow p-4 mb-5 bg-body rounded">
+<h1 class="display-4">Welcome to Calorie Tracker App</h1>
+<p class="lead">Keeping track of you calorie intake has just gotten easier.</p>
+<hr class="my-4">
+<p>Simply add the foods you consume, view your daily totals, and make informed choices about your diet. </p>
+
+<p>Whether you're aiming to lose weight, maintain your current weight, or just want to be more mindful of your eating habits, we're here to support you every step of the way.
+    Our app helps you monitor what you eat, ensuring you stay on top of your health goals. Let's get started on your journey to a healthier you!</p>
+
+
+
+<a href="{% url 'meal_list' %}" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">View Meals</a>
+
+
+</div>
+{% endblock %}

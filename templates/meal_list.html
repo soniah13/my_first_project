@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %} Meal List {% endblock %}
+
+{% block content %}
+<div class="shadow p-4 mb-5 bg-body rounded">
+<h2 class="text-center">Meals Consumed</h2>
+<p class="text-center">No meals added yet click <a href="{% url 'add_meal'%}" class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover">Add meal</a> to add meal and calories</p>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h3>Breakfast</h3>
+<ul>
+    {% for meal in meals %}
+    {% if meal.meal_type == 'breakfast' %}
+    <li>{{ meal.name }} - {{ meal.total_calories}} calories 
+        <form action="{% url 'remove_meal' meal.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this meal?');">Delete</button>
+        </form>
+    </li>
+    
+    {% endif %}
+    {% endfor %}
+</ul>
+<a href="{% url 'reset_calories' 'breakfast' %}" class="btn btn-warning">Reset Breakfast calories</a>
+<h4>Total Breakfast Calories Consumed : {{ breakfast_calories }}</h4>
+
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h3>Lunch</h3>
+<ul>
+    {% for meal in meals %}
+    {% if meal.meal_type == 'lunch' %}
+    <li>{{ meal.name }} - {{ meal.total_calories}} calories 
+        <form action="{% url 'remove_meal' meal.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this meal?');">Delete</button>
+        </form>
+    </li>
+    
+    {% endif %}
+    {% endfor %}
+</ul>
+<a href="{% url 'reset_calories' 'lunch' %}" class="btn btn-warning">Reset Lunch calories</a>
+<h4>Total Lunch Calories Consumed : {{ lunch_calories }}</h4>
+    </div>
+</div>
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h3>Dinner</h3>
+<ul>
+    {% for meal in meals %}
+    {% if meal.meal_type == 'dinner' %}
+    <li>{{ meal.name }} - {{ meal.total_calories}} calories 
+        <form action="{% url 'remove_meal' meal.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this meal?');">Delete</button>
+        </form>
+    </li>
+    
+    {% endif %}
+    {% endfor %}
+</ul>
+<a href="{% url 'reset_calories' 'dinner' %}" class="btn btn-warning">Reset Dinner calories</a>
+<h4>Total Dinner Calories Consumed : {{ dinner_calories }}</h4>
+
+    </div>
+</div>
+</div>
+{% endblock %}
